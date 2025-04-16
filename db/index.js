@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect('mongodb://localhost:27017/MSFDB')
   .then(() => {
     console.log('DB CONNECTED');
   })
   .catch(e => {
-    console.error('DB CONNECTION ERROR:', e);
+    console.log(e);
   });
-
 module.exports = mongoose;
