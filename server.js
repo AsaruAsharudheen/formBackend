@@ -7,6 +7,8 @@ const Details = require('./db/details-schema');
 
 const App = express();
 
+const PORT = process.env.PORT || 4009;
+
 App.use(express.json());
 App.use(cors());
 const routes = require('./routes');
@@ -23,6 +25,6 @@ App.post('/Details', async (req, res) => {
   res.status(200).json(Detail);
 });
 
-App.listen(4009, () => {
-  console.log('App is running');
+App.listen(PORT, () => {
+  console.log(`App is running ${PORT}`);
 });
