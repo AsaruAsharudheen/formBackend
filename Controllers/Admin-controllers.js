@@ -1,8 +1,8 @@
-const Admin = require('../db/adminSchema');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import Admin from '../db/adminSchema.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
-module.exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -12,18 +12,18 @@ module.exports.signup = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 2);
-    const dbResponse = await Admin.create({
+    await Admin.create({
       email: email,
       password: hashedPassword,
     });
 
-    return res.status(201).json({ message: 'you are signed up' });
+    return res.status(201).json({ message: 'You are signed up' });
   } catch (e) {
     res.status(500).json({ message: e.message, error: true });
   }
 };
 
-module.exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email: email });

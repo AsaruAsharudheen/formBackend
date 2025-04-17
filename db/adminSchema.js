@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const adminSchema = Schema(
+const adminSchema = new Schema(
   {
     email: {
       type: String,
@@ -8,7 +8,6 @@ const adminSchema = Schema(
       required: true,
       trim: true,
     },
-
     password: {
       type: String,
       required: true,
@@ -24,4 +23,4 @@ const adminSchema = Schema(
 
 const Admin = model('admins', adminSchema);
 
-module.exports = Admin;
+export default Admin;
